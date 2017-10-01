@@ -1,0 +1,13 @@
+server {
+    listen 80;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443;
+    server_name mautic.diogomelo.net;
+    location / {
+        proxy_pass http://mautic;
+        proxy_redirect http://mautic https://mautic.diogomelo.net;
+    }
+}

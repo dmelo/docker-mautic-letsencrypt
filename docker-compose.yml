@@ -1,0 +1,31 @@
+version: '3.2'
+services:
+  letsencrypt:
+    build: ./letsencrypt
+    environment:
+      - URL=${URL}
+      - EMAIL=${EMAIL}
+    links:
+      - mautic:mautic
+    ports:
+      - 443:443
+    volumes:
+      - letsencrypt-config:/config
+  mautic:
+    image: mautic/mautic
+    links:
+      - mauticdb:mysql
+    environment:
+      - MAUTIC_DB_HOST=mauticdb
+      - MAUTIC_DB_PASSWORD=example
+
+  mauticdb:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - type: volume
+        source: ./mariadb/data
+        target: /var/lib/mysql
+volumes:
+  letsencrypt-config:

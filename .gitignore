@@ -1,0 +1,4 @@
+.env
+letsencrypt/mautic.conf
+mariadb/data/
+*.swp
