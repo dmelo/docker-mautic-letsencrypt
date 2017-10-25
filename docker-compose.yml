@@ -18,7 +18,8 @@ services:
     environment:
       - MAUTIC_DB_HOST=mauticdb
       - MAUTIC_DB_PASSWORD=example
-
+    volumes:
+      - mautic-data:/var/www/html
   mauticdb:
     image: mariadb:10.2
     environment:
@@ -27,4 +28,5 @@ services:
       - mariadb-data:/var/lib/mysql
 volumes:
   letsencrypt-config:
+  mautic-data:
   mariadb-data:
