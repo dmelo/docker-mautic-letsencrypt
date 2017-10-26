@@ -18,6 +18,7 @@ services:
     environment:
       - MAUTIC_DB_HOST=mauticdb
       - MAUTIC_DB_PASSWORD=example
+      - MAUTIC_TRUSTED_PROXIES=0.0.0.0/0
     volumes:
       - mautic-data:/var/www/html
   mauticdb:
